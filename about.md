@@ -4,20 +4,22 @@ title: About
 permalink: /about/
 ---
 
-Software Engineer with about 5 years of professional experience who loves Video Games.
+Software Engineer with about 5 years of professional experience, who loves Video Games and apprently
+dislikes any healthy vegetables.
 
 ### More Information
 
-Likes Java and open source, don't like C# and green vegetables.
+I'm From Sri Lanka, a beautiful country, famous for it's tea and culture.
 
 Been working mainly on the Java stack for web and enterprise applications.
 
 Recently I've been working with Groovy and grails and at the moment looking at the influx of
 Javascript.
 
-Favorite IDEs are intelliJ.
+Favorite IDEs are make by Jetbrains.
 
-Personality wise I'm pretty laid back and likes to have fun.
+Personality wise I'm pretty laid back and likes to have fun, even though my sense of humour isn't for
+everyone.
 
 I enjoy helping and mentoring others.
 
