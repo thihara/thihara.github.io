@@ -27,6 +27,7 @@ I like to learn, and I believe working with smarter, considerate people is the b
 like reading fiction and playing video games, I find them to be stimulating apart from being fun.
 
 Spend any free time I have (after gaming) to contribute to stackoverflow.
+
 ### Contact me
 
 [tneranjya@gmail.com](mailto:tneranjya@gmail.com)
