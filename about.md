@@ -4,12 +4,27 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Software Engineer with about 5 years of professional experience who loves Video Games.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+Likes Java and open source, don't like C# and green vegetables.
 
+Been working mainly on the Java stack for web and enterprise applications.
+
+Recently I've been working with Groovy and grails and at the moment looking at the influx of
+Javascript.
+
+Favorite IDEs are intelliJ.
+
+Personality wise I'm pretty laid back and likes to have fun.
+
+I enjoy helping and mentoring others.
+
+I like to learn, and I believe working with smarter, considerate people is the best way. I also
+like reading fiction and playing video games, I find them to be stimulating apart from being fun.
+
+Spend any free time I have (after gaming) to contribute to stackoverflow.
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[tneranjya@gmail.com](mailto:tneranjya@gmail.com)
