@@ -13,7 +13,8 @@ in javascript are functions that can be used to create objects.
 The one I could easily relate to was creating a constructor function, this will act like a class ins Javascript allowing
 us to create objects from it.
 
-`function Car(make, model){
+```javascript
+function Car(make, model){
     this.make = make;
     this.model = model;
 
@@ -21,11 +22,13 @@ us to create objects from it.
         alert("Honk from "+ make + " " + "model");
     };
  }
-`
+```
 
 We can create new objects using the constructor function we created above like this
 
-`var car1 = new Car("Toyota", "Camry");
+```javascript
+var car1 = new Car("Toyota", "Camry");
 var car2 = new Car("Rolls Royce", "Phantom");
 
-car1.honk();`
+car1.honk();
+```
