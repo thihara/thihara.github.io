@@ -151,4 +151,75 @@ You can also extend existing interfaces by redefining them and adding the new at
 ```
 
 Keep in mind that interfaces are purely for compile time checking, no changes will be made to the compiled Javascript files
-due to the use if interfaces.
+due to the use of interfaces.
+
+Now this is all good and well when we are writing our applications, but can't we get type checking for libraries we
+might end up using?
+
+We can, this is achieved by defining the interfaces of those libraries separately. Generally they carry the `.d.ts`
+format. There are a bunch of these definitions created by the typescript community member out there.
+
+For example angular type definitions would look like `angular.d.ts`.
+
+You can use it by using a special comment that the typescript compiler recognises.
+
+```typescript
+    // <reference path="angular.d.ts" />
+```
+
+
+#### Decorators
+
+Typescript also offers something called decorators, which is a lot similar to Java annotations.
+
+The decorators are a way to provide metadata. You can annotate classes, methods, parameters and object properties with
+decorators.
+
+Type script decorators are powerful, they can modify the input and output parameters in the context they are applied to.
+They can also provide metadata for frameworks, which is what we'll look at since that's the purpose of typescript
+decorators for Angular2.
+
+Decorators are designated by the `@` symbol, and can contain a number of configuration and/or metadata required for
+their operation.
+
+```typescript
+    //This is a sample of how decorators can be used to provide metadata to the Angular2 framework.
+    @Component({
+    selector: 'car',
+    templateUrl: 'car/car.html'
+    })
+    export class Car{
+
+    }
+```
+
+They can also be used to automate some cross cutting concerns like logging because of their powerful nature.
+
+```typescript
+
+    let log = function () {
+
+        //target : The prototype of the class
+        //propertyKey : The name of the method
+        //descriptor : Target descriptor, more accurately an instance of TypedPropertyDescriptor describing if the method
+        //             is writable, configurable, enumerable etc.
+        return (target: any, propertyKey: string, descriptor: any) => {
+
+            //Here we are simply logging that the method was called. But you can do things like manipulating the
+            //parameters or return value as well.
+            console.log(`Called ${propertyKey}`);
+
+            return descriptor;
+        };
+    };
+
+    //This is how the decorator will be used.
+    @log
+    function honkCar(car:Car):void{
+
+    }
+```
+
+So this is the most important aspects of Typescript where Angular2 development is concerned. You don't have to use it,
+but using it will make your angular app a lot cleaner and easier to read, not to mention well organized and
+maintainable.
