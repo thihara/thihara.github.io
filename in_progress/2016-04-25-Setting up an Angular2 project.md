@@ -86,6 +86,9 @@ We need to add two additional options to the `tsconfig.json` file now.
 Now that we have declared we are using the `app` directory as the root for our typescript files, we need to create it
 inside the `angular2_starter` directory.
 
+More compiler options can be found from the
+[official documentation](http://www.typescriptlang.org/docs/handbook/compiler-options.html)
+
 Now we need to start the typescript compiler and tell it to start watching for `.ts` file changes. If you have an IDE,
 it will probably do this automatically. I'm using intelliJ WebStorm and it does this automatically.
 
@@ -99,3 +102,64 @@ Keep in mind that you shouldn't kill this process, keep it running to continuall
 
 #### Setting up Angular 2
 
+First we need to tell `npm` to initialize our app.
+
+```
+npm init
+```
+
+You can just press enter to all the questions without any problems, unless you want to change any of them, in which
+case you should.
+
+This will create a file name `package.json`. This is where the dependencies for our app is going to be in.
+
+It will look like this
+
+```json
+    {
+      "name": "angular2_starter",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC"
+    }
+```
+
+Now to add angular as a dependency into our application using `npm`.
+
+Type in
+
+```
+ npm install angular2 --save
+```
+
+This will install angular2, add it and it's dependencies into our `package.json` file, which should by now look like this.
+
+```json
+{
+  "name": "angular2_starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "^2.0.0-beta.16",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.2",
+    "zone.js": "^0.6.12"
+  }
+}
+```
+
+And that's it. Angular is ready to be used in our app.
+
+Let's create a few components and take it for a test ride.
