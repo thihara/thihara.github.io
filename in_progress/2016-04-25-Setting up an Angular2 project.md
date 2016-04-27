@@ -163,3 +163,25 @@ This will install angular2, add it and it's dependencies into our `package.json`
 And that's it. Angular is ready to be used in our app.
 
 Let's create a few components and take it for a test ride.
+
+Create a file named `hello_app.ts` like the example below. Remember to keep the typescript compiler running!
+
+```typescript
+import {Component} from "angular2/core";
+
+@Component({
+    selector: "hello-app",
+    template:`<h1>Hello from Angular 2!</h1>`
+})
+export class HelloApp {
+
+}
+```
+
+You should see `hello_app.js` (the compiles javascript code), `hello_app.js.map`(the mapping file between compiled
+javascript and source typescript) files inside the build folder (remember the folder we designated as the `outDir`).
+
+We now need to create an HTML file as the entry point in our app.
+
+
+
