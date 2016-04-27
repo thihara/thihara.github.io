@@ -178,10 +178,98 @@ export class HelloApp {
 }
 ```
 
-You should see `hello_app.js` (the compiles javascript code), `hello_app.js.map`(the mapping file between compiled
-javascript and source typescript) files inside the build folder (remember the folder we designated as the `outDir`).
+The `Component` decorator is what we use to give the Angular 2 framework the metadata about the class.
 
-We now need to create an HTML file as the entry point in our app.
+The `selector`designates the tag that will represent this component. It can be used in HTML pages
+like `<hello-app></hello-app>`.
 
+The `template` option is how we can tell Angular what we want our component to render. Here we are keeping things very
+simple since this is basically just a "Hello World" app.
 
+After compilation you should see `hello_app.js` (the compiles javascript code), `hello_app.js.map`(the mapping file
+between compiled javascript and source typescript) files inside the build folder (remember the folder we designated
+as the `outDir`?).
 
+Let's start our angular app, create another file named `bootstrap.ts` and enter the bootstrapping code.
+
+```typescript
+import {bootstrap} from 'angular2/platform/browser';
+import {HelloApp} from './hello_app';
+
+bootstrap(HelloApp).catch(error => console.log(err));
+```
+
+`bootstrap` is how we will be starting our Angular 2 application. Right now we are only using it to start our simple
+application, however as we start using the full range of Angular 2 features the options we pass into the bootstrap
+method will get more complex and numerous.
+
+We now need to create an HTML file as the entry point in our app. Let's create our `index.html` file.
+
+```html
+<html>
+    <head></head>
+    <body>
+    <hello-app>
+        You will see the content between these tags while the angular app is loaded.
+    </hello-app>
+    </body>
+</html>
+```
+
+While modules are in the ES6 specification, they are not supported in all the browsers in use today, and ES5 doesn't
+have modules.
+
+So how can we load out application in a modular way?
+
+We will, in this instance, use [SystemJS](https://github.com/systemjs/systemjs). It's a dynamic module loader.
+
+So we need to install it via `npm`
+
+```
+npm install --save systemjs
+```
+
+Now let's statically link it in our HTML file and load the modules.
+
+```html
+<html>
+    <head>
+        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="node_modules/systemjs/dist/system.js"></script>
+        <script>
+        System.config({
+        // This let's us import js files without specifying .js extension
+        defaultJSExtensions: true,
+
+        // Angular dependencies to get started with.
+        map: {
+        'angular2': 'node_modules/angular2',
+        'rxjs': 'node_modules/rxjs'
+        }
+        });
+
+        // Loading the bootstrap file to start our app.
+        System.import('built/bootstrap');
+        </script>
+    </head>
+    <body>
+    <hello-app>
+        You will see the content between these tags while the angular app is loaded.
+    </hello-app>
+    </body>
+</html>
+```
+
+Now serve the app over any http server and you will be good to go.
+
+We can use the `npm` `http-server` to quickly start serving the files over http.
+
+```
+npm install -g http-server
+```
+
+Now simply type
+```
+http-server
+```
+inside the `angular2-starter` directory and access the app.
