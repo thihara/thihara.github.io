@@ -249,7 +249,7 @@ Now let's statically link it in our HTML file and load the modules.
         });
 
         // Loading the bootstrap file to start our app.
-        System.import('built/bootstrap');
+        System.import('build/bootstrap');
         </script>
     </head>
     <body>
