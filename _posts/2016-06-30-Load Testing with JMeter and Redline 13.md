@@ -34,14 +34,14 @@ for now I'm only interested in the JMeter related functionality.
 
 Lets get into a simple example to see how JMeter and AWS play together.
 
-####JMeter Test
+#### JMeter Test
 
 First we need to create a JMeter test. Let's stick to the basics for the purpose of this post.
 
 1. Create a new project (Demo Test) and add a new Thread Group (Demo Test Group) by right clicking on the project,
 selecting add and then Thread Group.
 
-![Creating Thread Group]({{site.baseurl}}/jmeter/JM1.png)
+![Creating Thread Group]({{ site.baseurl }}/images/jmeter/JM1.png)
 
 2. Let's simulate 300 users over a 5 second period. Each user will run the requests 10 times before stopping for good.
 There's an option to run a user indefinitely if that's what we want, but let's keep things simple for now. Enter 300
@@ -66,7 +66,7 @@ We will generally require a listener added, listeners are how JMeter will let us
 our results, but they will slow down the test processing time and too much is a hindrance in distributed testing. So we
 will not be including any listeners in this particular example.
 
-####Redline13.com
+#### Redline13.com
 
 You will need to register yourself first, and then link your account to AWS. The instructions can be found
 [here](https://www.redline13.com/Aws/IAMSetup)
@@ -88,7 +88,7 @@ There you go, the first distributed test has been run, and it's very very cheap,
 
 You can run the test costs further down by using spot instances from AWS if you so wish to.
 
-####Results
+#### Results
 
 There are some metrics provided to us by Redline13.com, we get metrics like requests per second, average response time,
 bandwidth usage per request and a bunch of more JMeter and agent performance related metrics.
@@ -107,7 +107,7 @@ to gain some performance increase.
 You should also try to stay away from expensive operarions like using a lot of listeners or writing results into files.
 It will let the tests scale much better.
 
-####Conclusion
+#### Conclusion
 
 Going with JMeter and AWS can save a lot of money when generating load to test your servers, and Redline13.com provides
 a convenient way to use AWS for this purpose.
