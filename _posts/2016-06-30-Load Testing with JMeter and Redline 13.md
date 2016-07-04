@@ -41,7 +41,7 @@ First we need to create a JMeter test. Let's stick to the basics for the purpose
 1. Create a new project (Demo Test) and add a new Thread Group (Demo Test Group) by right clicking on the project,
 selecting add and then Thread Group.
 
-![Creating Thread Group]({{ site.baseurl }}/jmeter/JM1.png)
+![Creating Thread Group]({{site.baseurl}}/jmeter/JM1.png)
 
 2. Let's simulate 300 users over a 5 second period. Each user will run the requests 10 times before stopping for good.
 There's an option to run a user indefinitely if that's what we want, but let's keep things simple for now. Enter 300
