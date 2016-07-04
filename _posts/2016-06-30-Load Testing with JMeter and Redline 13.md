@@ -48,17 +48,17 @@ There's an option to run a user indefinitely if that's what we want, but let's k
 for the number of users (threads), 5 (seconds) for the ramp up period and 10 for the loop count. In real life scenarios
 you will not be doing 10 requests rapidly without sleeping in between, but let's keep things this way for this example.
 
-![User Detail Configuration]({{ site.baseurl}}/jmeter/JM2.png)
+![User Detail Configuration]({{ site.baseurl}}/images/jmeter/JM2.png)
 
 3. Create a simple Get request for a user. Right click on the Thread Group and select Sampler, then HTTP Request.
 
-![Create GET Request]({{ site.baseurl jmeter/JM3.png)
+![Create GET Request]({{ site.baseurl }}/images/jmeter/JM3.png)
 
 4. For the example we will use http://jmeter.apache.org/. It's a pretty simple page, and I'm sure Apache won't mind
 the load since it's the one used in their tutorials. Enter jmeter.apache.org in Server Name, you can also give an IP
 address. Select the client implementation, in this case HttpClient4 and finally enter / as the path.
 
-![GET Request Configuration]({{ site.baseurl }}/jmeter/JM4.png)
+![GET Request Configuration]({{ site.baseurl }}/images/jmeter/JM4.png)
 
 5. Save the test plan by clicking the save button on top. JMeter will save the test plan with a .jmx extension.
 
@@ -73,11 +73,11 @@ You will need to register yourself first, and then link your account to AWS. The
 
 1. Once the setup is done you just need to start a new test by navigating to Home and clicking the Start New Test button.
 
-![Creating Thread Group]({{ site.baseurl }}/jmeter/R131.png)
+![Creating Thread Group]({{ site.baseurl }}/images/jmeter/R131.png)
 
 2. Select the JMeter test option and upload the saved .jmx file.
 
-![Creating Thread Group]({{ site.baseurl }}/jmeter/R132.png)
+![Creating Thread Group]({{ site.baseurl }}/images/jmeter/R132.png)
 
 3. Select how many test instances you want. The demo test we created will simulate 300 users, so if we input 3 as the
 number of servers we will get 900 users (300 x 3).
