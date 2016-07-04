@@ -40,24 +40,20 @@ First we need to create a JMeter test. Let's stick to the basics for the purpose
 
 1. Create a new project (Demo Test) and add a new Thread Group (Demo Test Group) by right clicking on the project,
 selecting add and then Thread Group.
-
 ![Creating Thread Group]({{ site.baseurl }}/images/jmeter/JM1.png)
 
 2. Let's simulate 300 users over a 5 second period. Each user will run the requests 10 times before stopping for good.
 There's an option to run a user indefinitely if that's what we want, but let's keep things simple for now. Enter 300
 for the number of users (threads), 5 (seconds) for the ramp up period and 10 for the loop count. In real life scenarios
 you will not be doing 10 requests rapidly without sleeping in between, but let's keep things this way for this example.
-
 ![User Detail Configuration]({{ site.baseurl}}/images/jmeter/JM2.png)
 
 3. Create a simple Get request for a user. Right click on the Thread Group and select Sampler, then HTTP Request.
-
 ![Create GET Request]({{ site.baseurl }}/images/jmeter/JM3.png)
 
 4. For the example we will use http://jmeter.apache.org/. It's a pretty simple page, and I'm sure Apache won't mind
 the load since it's the one used in their tutorials. Enter jmeter.apache.org in Server Name, you can also give an IP
 address. Select the client implementation, in this case HttpClient4 and finally enter / as the path.
-
 ![GET Request Configuration]({{ site.baseurl }}/images/jmeter/JM4.png)
 
 5. Save the test plan by clicking the save button on top. JMeter will save the test plan with a .jmx extension.
