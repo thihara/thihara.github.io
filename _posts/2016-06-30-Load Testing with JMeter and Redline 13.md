@@ -68,11 +68,9 @@ You will need to register yourself first, and then link your account to AWS. The
 [here](https://www.redline13.com/Aws/IAMSetup)
 
 1. Once the setup is done you just need to start a new test by navigating to Home and clicking the Start New Test button.
-
 ![Creating Thread Group]({{ site.baseurl }}/images/jmeter/R131.png)
 
 2. Select the JMeter test option and upload the saved .jmx file.
-
 ![Creating Thread Group]({{ site.baseurl }}/images/jmeter/R132.png)
 
 3. Select how many test instances you want. The demo test we created will simulate 300 users, so if we input 3 as the
