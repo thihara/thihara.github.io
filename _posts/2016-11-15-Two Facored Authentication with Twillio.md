@@ -3,8 +3,6 @@ layout: post
 title: Two Factored Authentication with Twilio Authy
 ---
 
-## What is it?
-
 What is two factored authentication? It's an added layer of security. Generally combining something you know with
 something you have to authenticate you.
 
