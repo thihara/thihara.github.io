@@ -10,6 +10,7 @@ An every day example will be your ATM card. You need the card itself (The thing 
 thing you know) in order to use the card to withdraw money. Or you might have seen someone use a disconnected token
 generator (A key ring like thing that generates security tokens.) to enter a security token along with their username
 and password to access a secure application.
+
 ![Disconnected Token Generator]({{ site.baseurl }}/images/tfa/CryptoCard_two_factor.jpg)
 
 ## Huh, sounds expensive!
