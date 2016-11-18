@@ -275,4 +275,4 @@ Github : [https://github.com/thihara/authy-demo](https://github.com/thihara/auth
 
 Heroku : [https://tranquil-lowlands-41989.herokuapp.com/](https://tranquil-lowlands-41989.herokuapp.com/)
 
-I just love Heroku's aut generated application names!
+I just love Heroku's auto generated application names!
