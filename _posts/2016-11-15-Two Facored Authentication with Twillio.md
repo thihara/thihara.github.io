@@ -1,8 +1,7 @@
 ---
 layout: post
-title: Two Factored (Multi factored really!) Authentication with Twilio Authy
+title: Two Factored Authentication with Twilio Authy
 ---
-# Two Factored Authentication
 
 ## What is it?
 
