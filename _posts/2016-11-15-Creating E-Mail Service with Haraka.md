@@ -677,15 +677,19 @@ or access control lists to keep your server's outbound capabilities secure.
 
 ## Conclusion
 
-This guide should take you quite far in setting up your email service, or email pipeline to do whatever you want. I've
-also written a small Java application that lists emails stored in an AWS S3 bucket as well as send simple text based
-emails.
+This guide should take you quite far in setting up your email service, or email pipeline to do whatever you want. The
+source code for the haraka configuration can be found from the following github repository.
+
+[https://github.com/thihara/haraka_test](https://github.com/thihara/haraka_test)
+
+I've also written a small Java application that lists emails stored in an AWS S3 bucket as well as send simple text
+based emails.
 
 You can find the source code from the following github repository.
 
-https://github.com/thihara/email_client/
+[https://github.com/thihara/email_client/](https://github.com/thihara/email_client/)
 
 The application is just a trivial application to demonstrate that the content of this post is sufficient to start a
 basic email service. Of course there's a lot more that's needed to do before you have a fully functional service, like
-encryption, site building, a rich UI client etc. But hopefully this will point you in the right direction with a jump
+encryption, site building, a rich UI client etc. Hopefully this will point you in the right direction with a jump
 start.
