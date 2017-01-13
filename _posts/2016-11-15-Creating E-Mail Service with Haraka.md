@@ -20,7 +20,7 @@ recipients and accept or reject the email. How to write a plugin to place incomi
 
 It's going to be a long post!
 
-##Installing Haraka
+## Installing Haraka
 
 You will first need to have [npm](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/) installed in your
 system. The installation instructions are pretty clear and straightforward.
@@ -69,12 +69,12 @@ sudo Haraka -c /path/to/haraka_test/
 You will see some log output on the console, and then the server should start up. While there's nothing much you can do
 right now the way this server is setup, it's the first step!
 
-##Receiving Emails
+## Receiving Emails
 
 After the server is installed successfully, it's time to to set it up to pick up incoming emails. So here's the thing
 to do this properly, you will need your own domain.
 
-###MX Record
+### MX Record
 
 Now everyone knows, or I hope they do, what a DNS record is, basically that's what tells everyone which domain is
 pointed at which server.
@@ -97,7 +97,7 @@ When you want Haraka to accept emails for your domain, you need to add it to the
 file. For example, to accept emails for `thihara.com` (i.e.: thihara@thihara.com, tj@thihara.com) you need to add
 `thihara.com` to the `host_list` file as a single line.
 
-###SMTP
+### SMTP
 
 It's worth noting that the responsibility of an SMTP server like Haraka is two fold.
 
@@ -107,16 +107,16 @@ It's worth noting that the responsibility of an SMTP server like Haraka is two f
 In no way will the SMTP server itself store the emails, nor does it have any concept of an inbox/mailbox (Where
 emails specific to a single user will be stored).
 
-Storing emails and maintaining inboxes is generally done by separate servers like IMAP or POP3. We will be
+Storing emails and maintaining inboxes is generally done by separate servers like IMAP or POP3.
 
-###Setting up a Queue
+### Setting up a Queue
 
 A queue is a term Haraka uses to describe how the email is forwarded. The queue is going to decide what will happen to
 the emails that are received by the server. You can decide to use a queue that will discard the received emails for
 testng purposes, or use a plugin that will forward the emails to a POP3 or an IMAP server. Even put the emails in
 an S3 bucket or in some kind of a database.
 
-###Swaks
+### Swaks
 
 Swaks is a script that you can use to test the SMTP server by sending emails. It can be found in
 [http://www.jetmore.org/john/code/swaks/](http://www.jetmore.org/john/code/swaks/)
