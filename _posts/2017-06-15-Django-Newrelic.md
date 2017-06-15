@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting up NewRelic on a Django app deployed on Apache using mod_wsgi
+title: Setting up NewRelic on a Django app deployed on Apache HTTPD using mod_wsgi
 ---
 
 New Relic is normally pretty easy to integrate and doesn't require any code modifications - at least it didn't when I
