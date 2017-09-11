@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Parsing Unsupported Requests in Django
+title: Parsing Unsupported Requests (PUT, DELETE, etc.) in Django
 ---
 
 Django is a mature web framework for Python. It does it's job well, however anyone writing a RESTful API  in Django will
@@ -39,7 +39,7 @@ reasons for this, it's explained in
 [this](https://groups.google.com/forum/#!msg/django-developers/dxI4qVzrBY4/m_9IiNk_p7UJ) post. You also do not get the
 convenience of accessing any uploaded files via the `request.FILES` attribute in other HTTP methods like `PUT`.
 
-#Solution
+# Solution
 
 Before you go any furthur there are third-party frameworks like
 [Django REST Framework](http://www.django-rest-framework.org/) or [Tasty Pie](https://django-tastypie.readthedocs.io/)
