@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ce52f5d3-8b02-457f-bf04-3675adac6da8" name="Default" comment="Jmeter and Redline13">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2017-06-15-Django-Req-Parsing.md" afterPath="$PROJECT_DIR$/_posts/2017-06-15-Django-Req-Parsing.md" />
     </list>
     <ignored path="thihara.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,8 +118,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2017-06-15-Django-Req-Parsing.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="289">
-                <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+              <first_editor relative-caret-position="-1436">
+                <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -358,7 +359,7 @@
       <workItem from="1497491197052" duration="5495000" />
       <workItem from="1497592639570" duration="443000" />
       <workItem from="1497594637165" duration="24000" />
-      <workItem from="1505045049060" duration="8243000" />
+      <workItem from="1505045049060" duration="8372000" />
     </task>
     <task id="LOCAL-00001" summary="Es6 Primer finished">
       <created>1460358939119</created>
@@ -455,7 +456,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145417000" />
+    <option name="totallyTimeSpent" value="145546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -946,8 +947,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2017-06-15-Django-Req-Parsing.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="289">
-            <caret line="170" column="63" selection-start-line="170" selection-start-column="63" selection-end-line="170" selection-end-column="63" />
+          <first_editor relative-caret-position="-1436">
+            <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
             <folding />
           </first_editor>
           <second_editor />

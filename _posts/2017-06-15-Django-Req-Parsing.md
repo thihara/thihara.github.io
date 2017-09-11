@@ -168,7 +168,7 @@ As you can see in the `PutParsingMiddleware` we parse the `PUT` method parameter
 We do the `JSON` data parsing for `PUT` and `POST` requests in the `JSONParsingMiddleware` class and put the parsed data
 in the `request.JSON` attribute. We also return a `HttpResponseBadRequest` response if the `JSON` data is unparseable.
 
-We can now enjoy the fruits of our labour in a much cleaner way.
+We can now enjoy the fruits of our labour.
 
 ```python
 class HelloController(View):
@@ -179,3 +179,5 @@ class HelloController(View):
         hello_param = request.PUT["helloParam"]
         hello_file = request.FILES["helloFile"]
 ```
+
+ Much cleaner wouldn't you say?
