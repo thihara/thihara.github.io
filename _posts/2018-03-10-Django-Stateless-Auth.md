@@ -53,7 +53,7 @@ should be a NumericDate value. That basically means **Seconds Since the Epoch**
 
 Let's see what out basic token looks like.
 
-```python
+```
 {'user_id': user_id, 'exp': datetime.utcnow() + timedelta(days=5)}
 ```
 
@@ -87,12 +87,12 @@ It's not possible to generate the proper hash for the tampered message without t
 sign it.
 
 So the encoding method would look like
-```python
+```
 jwt.encode(payload_to_be_signed, "myapplicationwidesecret", "HS512")
 ```
 
 and the decoding method would look like
-```python
+```
 jwt.decode(jwt_token, "myapplicationwidesecret", "HS512")
 ```
 
@@ -138,7 +138,7 @@ a JWT token for that given user ID. We will then return the JWT to the user who 
 The `verify_token` method accepts a `jwt_token` parameter, and decodes the JWT. If the JWT is invalid it throws a
 JWTError and the calling method needs to handle it like this.
 
-```python
+```Python
     try:
         decoded_payload = jwt_service.verify_token(jwt_token)
     except JWTError as e:
@@ -164,7 +164,7 @@ designate it invalid.
 
 So our final JWTService class will look like this.
 
-```python
+```Python
 import uuid
 from datetime import datetime, timedelta
 
@@ -221,7 +221,7 @@ provide the authenticated user details to the calling method in an easily access
 
 Let's see what our decorator look like.
 
-```python
+```Python
 import inspect
 from functools import wraps
 
@@ -278,7 +278,7 @@ You can use this decoator on the view functions you want to protect.
 
 In a class based view, you can use it via the `method_decorator` decorator (a bit strange, I know!).
 
-```python
+```Python
 import logging
 
 from django.http import JsonResponse
@@ -297,7 +297,7 @@ class HelloController(View):
 ```
 
 In a normal view function you can use it directly
-```python
+```Python
 from django.http import *
 from django.views.decorators.http import require_GET
 
