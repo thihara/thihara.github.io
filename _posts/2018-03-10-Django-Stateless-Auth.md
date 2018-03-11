@@ -101,7 +101,7 @@ If the JWT is invalid the `decode` method would throw an JWTError.
 ## Writing our JWT Service.
 Now that we know how to encode/sign a JWT and decode it, let's write our own JWT service.
 
-```Python
+```python
 import uuid
 from datetime import datetime, timedelta
 
@@ -138,7 +138,7 @@ a JWT token for that given user ID. We will then return the JWT to the user who 
 The `verify_token` method accepts a `jwt_token` parameter, and decodes the JWT. If the JWT is invalid it throws a
 JWTError and the calling method needs to handle it like this.
 
-```Python
+```python
     try:
         decoded_payload = jwt_service.verify_token(jwt_token)
     except JWTError as e:
@@ -221,7 +221,7 @@ provide the authenticated user details to the calling method in an easily access
 
 Let's see what our decorator look like.
 
-```Python
+```python
 import inspect
 from functools import wraps
 
@@ -278,7 +278,7 @@ You can use this decoator on the view functions you want to protect.
 
 In a class based view, you can use it via the `method_decorator` decorator (a bit strange, I know!).
 
-```Python
+```python
 import logging
 
 from django.http import JsonResponse
@@ -297,7 +297,7 @@ class HelloController(View):
 ```
 
 In a normal view function you can use it directly
-```Python
+```python
 from django.http import *
 from django.views.decorators.http import require_GET
 
