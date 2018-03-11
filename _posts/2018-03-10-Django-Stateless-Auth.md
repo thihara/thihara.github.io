@@ -164,7 +164,7 @@ designate it invalid.
 
 So our final JWTService class will look like this.
 
-```Python
+```python
 import uuid
 from datetime import datetime, timedelta
 
