@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Securing an stateless Django Application
+title: Securing a Stateless Django Application
 ---
 
 Django is a mature web framework for Python. Among it's many uses is creating REST APIs (or a standalong backend for
