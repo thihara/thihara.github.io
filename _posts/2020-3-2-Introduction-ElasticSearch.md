@@ -114,7 +114,7 @@ There are sevaral node types. Though I say types these are actually roles that e
  - Ingest nodes — Pre-process documents before inserting them into elasticsearch (indexing)
 
 Here is an illustration of a cluster with five nodes in it.
-![Cluster and Nodes]({{ site.baseurl }}/images/elasticsearch/cluster.png)
+![Cluster and Nodes]({{ site.baseurl }}/images/elasticsearch/cluster_1.png)
 
 ## Indexes and Shards
 Elasticsearch stores data inside indexes. An index is the largest logical data encapsulation available in
