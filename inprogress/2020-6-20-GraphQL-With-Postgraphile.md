@@ -23,6 +23,8 @@ ALTER TABLE core_employeedetail ENABLE ROW LEVEL SECURITY;
 
 # Create roles (users)
 
+Create our users. Admin user is empadmin. Minion user is empminion
+
 > CREATE USER is equivalent to CREATE ROLE except that CREATE USER assumes LOGIN by default, while CREATE ROLE does not.
 
 ```sql
@@ -32,15 +34,51 @@ CREATE USER empminion; // Same as CREATE ROLE empminion LOGIN
 
 Create a role EMPLOYEE_ADMIN without LOGIN
 Create a role EMPLOYEE_MINION without LOGIN
-
-Create user admin
-Create user minion
-```sql
-GRANT EMPLOYEE_ADMIN TO admin;
-GRANT EMPLOYEE_MINION to minion
+```
+CREATE ROLE EMPLOYEE_ADMIN;
+CREATE ROLE EMPLOYEE_MINION;
 ```
 
+Grant the roles into our users
+```sql
+GRANT EMPLOYEE_ADMIN TO empadmin;
+GRANT EMPLOYEE_MINION to emp_minion
+```
+
+Grant the select permissions for both roles
+```
+GRANT SELECT ON core_employee TO EMPLOYEE_ADMIN;
+GRANT SELECT ON core_user TO EMPLOYEE_ADMIN;
+
+GRANT SELECT ON core_employee TO EMPLOYEE_MINION;
+GRANT SELECT ON core_user TO EMPLOYEE_MINION;
+```
+
+
 # Postgresql Policies
+
+Create a policy to grant access to the EMPLOYEE_MINION role to only see rows from the core_employee table them the
+associated username is the current user. Note the username is stored in the core_user table and the core_employee
+only have the user_id column referencing the core_user table.
+```
+CREATE POLICY emp_minions ON core_employee TO EMPLOYEE_MINION
+USING (EXISTS (SELECT user_name FROM core_user WHERE id = user_id and user_name = current_user));
+```
+
+We grant the EMPLOYEE_ADMIN user access to all the data in the core_employee table
+
+```
+CREATE POLICY emp_admin ON core_employee TO EMPLOYEE_ADMIN
+USING (true);
+```
+
+# Check roles
+Use the following select to check if a given Role (user) has another role assigned to it
+
+Here we are checking if empminion role has employee_admin role granted to id.
+```
+SELECT pg_has_role('empminion', 'employee_admin', 'MEMBER');
+```
 
 
 # Inherent Issues
@@ -53,27 +91,7 @@ However when we need more complicated functionality - for example, minion admins
 can create all types of users including minion admin and admin type users.
 
 ```sql
-select * from core_employee;
-alter table core_employee enable row level security;
-create user empadmin;
-create user empminion;
-GRANT SELECT ON core_employee TO EMPLOYEE_ADMIN;
-GRANT SELECT ON core_user TO EMPLOYEE_ADMIN;
 
-GRANT SELECT ON core_employee TO EMPLOYEE_MINION;
-GRANT SELECT ON core_user TO EMPLOYEE_MINION;
-
-CREATE ROLE EMPLOYEE_ADMIN; GRANT EMPLOYEE_ADMIN TO empadmin;
-CREATE ROLE EMPLOYEE_MINION; GRANT EMPLOYEE_MINION TO empminion;
-
-select * from core_employeedetail;
-alter table core_employeedetail enable row level security;
-
-CREATE POLICY emp_minions ON core_employee TO EMPLOYEE_MINION
-USING (EXISTS (SELECT user_name FROM core_user WHERE id = user_id and user_name = current_user));
-
-CREATE POLICY emp_admin ON core_employee TO EMPLOYEE_ADMIN
-USING (true);
 
 set role empadmin;
 
@@ -89,7 +107,6 @@ from core_employee ce where cu.id=ce.user_id;
 
 select * from core_user where user_name='Adel';
 
-SELECT pg_has_role('empminion', 'employee_admin', 'MEMBER');
 
 SELECT r.rolname,
   ARRAY(SELECT b.rolname
