@@ -65,10 +65,22 @@ CREATE POLICY emp_minions ON core_employee TO EMPLOYEE_MINION
 USING (EXISTS (SELECT user_name FROM core_user WHERE id = user_id and user_name = current_user));
 ```
 
+To only enable select oepration
+```sql
+CREATE POLICY emp_minions ON core_employee FOR SELECT TO EMPLOYEE_MINION
+USING (EXISTS (SELECT user_name FROM core_user WHERE id = user_id and user_name = current_user));
+```
+
 We grant the EMPLOYEE_ADMIN user access to all the data in the core_employee table
 
 ```
 CREATE POLICY emp_admin ON core_employee TO EMPLOYEE_ADMIN
+USING (true);
+```
+
+To only enable select operation
+```
+CREATE POLICY emp_admin ON core_employee FOR SELECT TO EMPLOYEE_ADMIN
 USING (true);
 ```
 
