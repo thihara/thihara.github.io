@@ -19,6 +19,7 @@ granularity of data they want.
 
 ```sql
 ALTER TABLE core_employeedetail ENABLE ROW LEVEL SECURITY;
+ALTER TABLE core_user ENABLE ROW LEVEL SECURITY;
 ```
 
 # Create roles (users)
@@ -84,7 +85,18 @@ CREATE POLICY emp_admin ON core_employee FOR SELECT TO EMPLOYEE_ADMIN
 USING (true);
 ```
 
+No similarly for the core_user table
+
+```
+CREATE POLICY user_minions ON core_user TO EMPLOYEE_MINION
+USING (user_name = current_user);
+
+CREATE POLICY user_admin ON core_user TO EMPLOYEE_ADMIN
+USING (true);
+```
+
 # Check roles
+
 Use the following select to check if a given Role (user) has another role assigned to it
 
 Here we are checking if empminion role has employee_admin role granted to id.
@@ -92,6 +104,79 @@ Here we are checking if empminion role has employee_admin role granted to id.
 SELECT pg_has_role('empminion', 'employee_admin', 'MEMBER');
 ```
 
+# Column based security
+
+```
+REVOKE SELECT ON core_user FROM EMPLOYEE_MINION --Remove initial grant
+
+GRANT SELECT(id, email, user_name) ON core_user to EMPLOYEE_MINION; --Grant permission only for the required columns
+
+select * from core_user; --Error
+select id, email, user_name, password from core_user; --OK
+select id, email, user_name from core_user; --OK
+
+```
+
+# Enable postgraphile security support
+
+```
+CREATE EXTENSION pgcrypto;
+CREATE ROLE NO_ACCESS_ROLE;
+```
+
+```
+update core_user set password = crypt('123',gen_salt('bf')) where email = 'thihara@favoritemedium.com';
+
+create role thiharafm;
+grant EMPLOYEE_MINION to thiharafm;
+grant EMPLOYEE_ADMIN to thiharafm;
+REVOKE EMPLOYEE_ADMIN from thiharafm;
+REVOKE SELECT ON core_user from EMPLOYEE_MINION;
+
+update core_user set user_name = 'thiharafm' where email = 'thihara@favoritemedium.com';
+
+
+-- The core user password need to be text type to be used with the crypt function in the authenticate function we are using below
+ALTER TABLE public.core_user
+    ALTER COLUMN password TYPE text;
+
+create type public.jwt_token as (
+  role text,
+  exp integer,
+  user_id integer,
+  is_admin boolean,
+  username text
+);
+
+drop function authenticate(text, text);
+
+create function public.authenticate(
+  email text,
+  password text
+) returns public.jwt_token as $$
+declare
+  account public.core_user;
+begin
+  select a.* into account
+    from public.core_user as a
+    where a.email = authenticate.email;
+
+  if account.password = crypt(password, account.password) then
+    return (
+      account.user_name,
+      extract(epoch from now() + interval '7 days'),
+      account.id,
+      account.is_superuser,
+      account.email
+    )::public.jwt_token;
+  else
+    return null;
+  end if;
+end;
+$$ language plpgsql strict security definer;
+
+select authenticate('thihara@favoritemedium.com','123');
+```
 
 # Inherent Issues
 
@@ -129,3 +214,34 @@ FROM pg_catalog.pg_roles r
 WHERE r.rolname !~ '^pg_'
 ORDER BY 1;
 ```
+
+## Postgraphile
+
+```
+postgraphile \
+  --jwt-token-identifier public.jwt_token \
+  --jwt-secret thisisanabsolutelysecurejwttoken \
+  -c postgres://thihara:@localhost/sixpaq \
+  -s public \
+  --default-role no_access_role
+```
+
+
+ query MyQuery {
+   allCoreUsers {
+     edges {
+       node {
+         id
+         email
+         userName
+         password
+       }
+     }
+   }
+ }
+
+ mutation {
+   authenticate(input: {email: "thihara@favoritemedium.com", password: "123"}) {
+     jwtToken
+   }
+ }
