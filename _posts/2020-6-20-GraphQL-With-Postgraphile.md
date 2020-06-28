@@ -4,12 +4,10 @@ title: Creating an authenticated GraphQL API with PostGraphile
 ---
 
 # Overview
-
 In this blog post we will look at how to create a GraphQL API over our PostgreSQL database and how to secure it
 granularly using PostGraphile and PostgreSQL's inbuild security mechanisms.
 
 ## GraphQL
-
 GraphQL is a data query and manipulation language for APIs.
 
 What that means is The API exposes a set of data models and provides a query language for the consumers. The consumers
@@ -24,14 +22,12 @@ While you do not need to be familiar with GraphQL to follow the content in this 
  GraphQL can be found [here](https://graphql.org/learn/).
 
 ## PostGraphile
-
 PostGraphile is a tool/framework written with NodeJS, that lets you create a GraphQL API on top your PostgreSQL
 database instantly. It can detect your data tables and create a GraphQL API to access that data.
 
 You can learn more about PostGraphile by browsing the documentation [here](https://www.graphile.org/postgraphile/introduction/)
 
 ### Installation
-
 You will need to have [NodeJS](https://nodejs.org/en/) and/or [npx](https://www.npmjs.com/package/npx) installed.
 
 There are two options available to install PostGraphile. One is to install it globally using node and then execute it.
@@ -65,7 +61,6 @@ Note that PostGraphile can also be used as a library from inside your existing a
  [here](https://www.graphile.org/postgraphile/usage-library/) for more details.
 
 # PostgreSQL Security
-
 Setting up an API over you database is useful, but you can't really use it in general applications unless you can
 secure it.
 
@@ -75,7 +70,6 @@ and authorization framework.
 Let's look at some of the security mechanisms we can use to secure our data at the PostgreSQL database level.
 
 ## Table and role setup
-
 We will use two tables for illustration purposes.
 
 1. core_user table containing core user data like email, username and password.
@@ -116,7 +110,6 @@ CREATE ROLE EMPLOYEE_MINION;
 ```
 
 ## PostgreSQL table and column level security
-
 Now that we created our two roles, we need to grant them permission into tables. We can grant table level permissions
 into each operation like SELECT, UPDATE, DELETE.
 
@@ -157,7 +150,6 @@ SET ROLE thihara; --thihara is the database owner (admin) in my local database a
 You can control column access to UPDATE operations as well. For more details see [here](https://www.postgresql.org/docs/10/sql-grant.html)
 
 ## PostgreSQL row level security
-
 PostgreSQL supports row level security since version 9.5. Row level security is enforced via policies and, as it's name
 implies, allows us to control access to individual database rows. And it needs to be turned on for individual
 tables before it will be enforced.
@@ -255,7 +247,6 @@ SET ROLE thihara; --thihara is the database owner (admin) in my local database a
 ```
 
 # PostGraphile security support
-
 Now that we created the roles and setup our policies in PostgreSQL, let's see what's needed to configure PostGraphile
 to work with our database.
 
@@ -321,7 +312,6 @@ SELECT authenticate('thihara@favoritemedium.com','123'); --Test it out
 This function will return the JWT upon successful authentication or null if authentication failed.
 
 ## Starting PostGraphile
-
 Now that all the configuration is done let's start the PostGraphile server.
 ```
 postgraphile \
