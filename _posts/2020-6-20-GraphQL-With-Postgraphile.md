@@ -5,24 +5,124 @@ title: Creating an authenticated GraphQL API with PostGraphile
 
 # Overview
 In this blog post we will look at how to create a GraphQL API over our PostgreSQL database and how to secure it
-granularly using PostGraphile and PostgreSQL's inbuild security mechanisms.
+granularly using PostGraphile and PostgreSQL's inbuilt security mechanisms.
 
 ## GraphQL
 GraphQL is a data query and manipulation language for APIs.
 
-What that means is The API exposes a set of data models and provides a query language for the consumers. The consumers
-decide on the granularity of data they want.
+What that means is that the API exposes a set of data models and provides a query language for the consumers.
+The consumers decide on the granularity of data they want.
+
+> A consumer is any user of the API, whether internal (application front end) or external (a third party application)
 
 This means the API owners can just define the public dataset and forget about API maintenance, and the consumers can
 define and extract only the data they are interested in.
 
-You may also perform update operations called mutations through GraphQL as well, if you so wishes to.
+You may also perform update operations called mutations through GraphQL as well, if you so wish to.
+
+For example you can have a table named `core_employee` containing employment related data like family name and
+given name.
+
+If you define a GraphQL API for this table (or object, Employee) through PostGraphile you no longer need to write multiple
+fine grained APIs for this table for data retrieval. The consumer can decide what the API should return by specifying that in
+the query.
+
+The following query specify that only the id (the primary key), and the family_name column is to be returned
+
+```graphql
+query MyQuery {
+  allCoreEmployees {
+    edges {
+      node {
+        id
+        familyName
+      }
+    }
+  }
+}
+```
+
+The result would be similar to
+
+```json
+{
+  "data": {
+    "allCoreEmployees": {
+      "edges": [
+        {
+          "node": {
+            "id": 1,
+            "familyName": "Jayathunga"
+          }
+        },
+        {
+          "node": {
+            "id": 71,
+            "familyName": "Test"
+          }
+        },
+        {
+          "node": {
+            "id": 72,
+            "familyName": "Nik"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Another query that request only the id column of the employee looks like this
+
+```graphql
+query MyQuery {
+  allCoreEmployees {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+```
+
+And the result would be
+```json
+{
+  "data": {
+    "allCoreEmployees": {
+      "edges": [
+        {
+          "node": {
+            "id": 1
+          }
+        },
+        {
+          "node": {
+            "id": 71
+          }
+        },
+        {
+          "node": {
+            "id": 72
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+The key point here is that both these requests go to the same API endpoint, yet the output is different based on what
+the query requests.
+
 
 While you do not need to be familiar with GraphQL to follow the content in this post, a good starting point for
  GraphQL can be found [here](https://graphql.org/learn/).
 
 ## PostGraphile
-PostGraphile is a tool/framework written with NodeJS, that lets you create a GraphQL API on top your PostgreSQL
+PostGraphile is a tool/framework written with NodeJS, that lets you create a GraphQL API on top of your PostgreSQL
 database instantly. It can detect your data tables and create a GraphQL API to access that data.
 
 You can learn more about PostGraphile by browsing the documentation [here](https://www.graphile.org/postgraphile/introduction/)
@@ -36,11 +136,11 @@ There are two options available to install PostGraphile. One is to install it gl
 
 And then you can run it using this command.
 
-`npx postgraphile -c postgres://user:pass@localhost/mydb --watch --enhance-graphiql --dynamic-json`
+`npx postgraphile -c postgres://user:password@localhost/mydb --watch --enhance-graphiql --dynamic-json`
 
 The other is to use npx and run it directly.
 
-`npx postgraphile -c postgres://user:pass@localhost/mydb --watch --enhance-graphiql --dynamic-json`
+`npx postgraphile -c postgres://user:password@localhost/mydb --watch --enhance-graphiql --dynamic-json`
 
 You need to change the connection URL (-c option) to reflect the settings in your database.
 
@@ -386,7 +486,20 @@ the user. Don't forget to hash the password!
 Please read the PostGraphile security section from [here](https://www.graphile.org/postgraphile/security/) to learn
 more.
 
-In conclusion PostGraphile could be a useful tool for rapid prototyping, and early stage application development. But
-as your application goes beyond that you are likely to need a proper backend for your application.
+# Conclusion
 
-Never put your eggs in a single basket, even if it's a advanced open source database!
+A tool like PostGraphile is to help non technical stakeholders understand the data they are working
+with.
+
+An example would be a UI/UX designer working on revamping a legacy application. PostGraphile would be a very
+useful tool for the designer to get a feel for the data and it's structure/relationship. It would be easier to
+understand than something like SQL because it's basically a object hierarchy, which for me at least, is easier to
+digest.
+
+Same goes for a QA engineer trying to analyze the data available in the database and a project manager trying to
+understand a data issue (or just data).
+
+In conclusion PostGraphile could be a useful tool for rapid prototyping, and early stage application development. With
+addition of role based authentication and row level security you can add robust access control into your database and
+your GraphQL API. But as your application goes beyond that you are likely to need a proper backend for your application.
+
